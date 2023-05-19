@@ -23,20 +23,41 @@ const image = {
 //   });
 // };
 
-export default function App() {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [isFocus, setIsFocus] = useState(false);
+const initialState = {
+  name: '',
+  password: '',
+};
 
-  const nameHandler = text => setName(text);
-  const passwordHandler = text => setPassword(text);
+export default function App() {
+  // const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
+  const [isFocus, setIsFocus] = useState(false);
+  const [state, setState] = useState(initialState);
+
+  // const nameHandler = text => setName(text);
+  const nameHandler = text =>
+    setState(prevstate => ({ ...prevstate, name: text }));
+  const passwordHandler = text =>
+    setState(prevstate => ({ ...prevstate, password: text }));
+
+  // const passwordHandler = text => setPassword(text);
 
   const onLogin = () => {
-    Alert.alert('Credentials', `${name} + ${password}`);
+    // Alert.alert('Credentials', `${state.name} + ${state.password}`);
+    Keyboard.dismiss();
+    console.log(state);
+    setState(initialState);
+    // setName(name);
+    // setPassword(password);
+    // setState(prevstate => ({ ...prevstate, name: value, password: value }));
+    // console.log(name);
+    // console.log(password);
   };
   const keyHide = () => {
     Keyboard.dismiss();
     setIsFocus(false);
+    // console.log(state);
+    setState(initialState);
   };
 
   return (
@@ -63,7 +84,7 @@ export default function App() {
                   onFocus={() => {
                     setIsFocus(true);
                   }}
-                  value={name}
+                  value={state.name}
                   onChangeText={nameHandler}
                   placeholder="Username"
                   style={styles.input}
@@ -72,7 +93,7 @@ export default function App() {
                   onFocus={() => {
                     setIsFocus(true);
                   }}
-                  value={password}
+                  value={state.password}
                   onChangeText={passwordHandler}
                   placeholder="Password"
                   secureTextEntry={true}
