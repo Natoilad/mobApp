@@ -1,201 +1,82 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-  ImageBackground,
-  Button,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from './screens/auth/LoginScreen';
+import RegisterScreen from './screens/auth/RegisterScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import PostsScreen from './screens/mainScreen/PostsScreen';
+import CreateScreen from './screens/mainScreen/CreateScreen';
+import ProfileScreen from './screens/mainScreen/ProfileScreen';
 
-const image = {
-  uri: 'https://instagram.fiev27-1.fna.fbcdn.net/v/t39.30808-6/339731547_1412529529546253_1074306498937314805_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08&_nc_ht=instagram.fiev27-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=JSX_eGGfHFoAX8jL8TO&edm=AJ9x6zYAAAAA&ccb=7-5&ig_cache_key=MzEwNDQ1MjU3MDM5ODE2MjYyOQ%3D%3D.2-ccb7-5&oh=00_AfCIClxcoLOBAqB2-Ho8mEmdwArptwspiUle1k3C39hgSg&oe=646C40B1&_nc_sid=5f7460.jpg',
-}; // import * as Font from 'expo-font';
-// const loadFonts = async () => {
-//   await Font.loadAsync({
-//     'Roboto-Regulat': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
-//     'Roboto-Bold': require('./assets/fonts/Roboto/Roboto-Bold.ttf'),
-//   });
-// };
-
-const initialState = {
-  name: '',
-  password: '',
+const authStack = createNativeStackNavigator();
+const mainTab = createBottomTabNavigator();
+const useRoute = isAuth => {
+  if (!isAuth) {
+    return (
+      <authStack.Navigator>
+        <authStack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Login"
+          component={LoginScreen}
+        />
+        <authStack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Register"
+          component={RegisterScreen}
+        />
+      </authStack.Navigator>
+    );
+  }
+  return (
+    <mainTab.Navigator>
+      <mainTab.Screen name="Posts" component={PostsScreen} />
+      <mainTab.Screen name="Create" component={CreateScreen} />
+      <mainTab.Screen name="Profile" component={ProfileScreen} />
+    </mainTab.Navigator>
+  );
 };
 
 export default function App() {
-  // const [name, setName] = useState('');
-  // const [password, setPassword] = useState('');
-  const [isFocus, setIsFocus] = useState(false);
-  const [state, setState] = useState(initialState);
-
-  // const nameHandler = text => setName(text);
-  const nameHandler = text =>
-    setState(prevstate => ({ ...prevstate, name: text }));
-  const passwordHandler = text =>
-    setState(prevstate => ({ ...prevstate, password: text }));
-
-  // const passwordHandler = text => setPassword(text);
-
-  const onLogin = () => {
-    // Alert.alert('Credentials', `${state.name} + ${state.password}`);
-    Keyboard.dismiss();
-    console.log(state);
-    setState(initialState);
-    // setName(name);
-    // setPassword(password);
-    // setState(prevstate => ({ ...prevstate, name: value, password: value }));
-    // console.log(name);
-    // console.log(password);
-  };
-  const keyHide = () => {
-    Keyboard.dismiss();
-    setIsFocus(false);
-    // console.log(state);
-    setState(initialState);
-  };
-
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        keyHide();
-      }}
-    >
-      <View style={styles.container}>
-        <ImageBackground source={image} style={styles.image}>
-          <KeyboardAvoidingView
-            behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-          >
-            <View>
-              <Text
-                style={{ ...styles.header, marginBottom: isFocus ? 250 : 400 }}
-              >
-                Welcome to Hell
-              </Text>
-              <View
-                style={{ ...styles.form, marginBottom: isFocus ? 20 : 150 }}
-              >
-                <TextInput
-                  onFocus={() => {
-                    setIsFocus(true);
-                  }}
-                  value={state.name}
-                  onChangeText={nameHandler}
-                  placeholder="Username"
-                  style={styles.input}
-                />
-                <TextInput
-                  onFocus={() => {
-                    setIsFocus(true);
-                  }}
-                  value={state.password}
-                  onChangeText={passwordHandler}
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  style={styles.input}
-                />
-                <Button
-                  title={'Login'}
-                  style={styles.input}
-                  onPress={() => {
-                    keyHide();
-                    onLogin();
-                  }}
-                />
-              </View>
-            </View>
-          </KeyboardAvoidingView>
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
-  );
+  const routes = useRoute(true);
+  // const [isAuth, setIsAuth] = useState(false);
+  // useEffect(() => {
+  //   setIsAuth(true);
+  // }, []);
+  const [fontsLoaded] = useFonts({
+    Regular: require('./assets/fonts/DMMono-MediumItalic.ttf'),
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
+  return <NavigationContainer>{routes}</NavigationContainer>;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+//auth
+// <authStack.Navigator>
+//   <authStack.Screen
+//     options={{
+//       headerShown: false,
+//     }}
+//     name="Login"
+//     component={LoginScreen}
+//   />
+//   <authStack.Screen
+//     options={{
+//       headerShown: false,
+//     }}
+//     name="Register"
+//     component={RegisterScreen}
+//   />
+// </authStack.Navigator>;
 
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor: 'white',
-  },
-  header: {
-    // flex: 1,
-    fontSize: 36,
-    color: 'red',
-    // borderWidth: 2,
-    // borderColor: 'black',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    textAlign: 'center',
-    // top: 100,
-    // marginBottom: 100,
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    resizeMode: 'cover',
-    // width: '100%',
-  },
-  input: {
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  form: {
-    alignItems: 'center',
-    // marginBottom: 300,
-    // justifyConstent: 'center',
-    // width: 300,
-    // height: 44,
-    // padding: 20,
-    // borderWidth: 1,
-    // borderColor: 'white',
-  },
-});
-
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.title}>React Native It`s so hard</Text>
-//       <TouchableOpacity style={styles.btn}>
-//         <Text>Login</Text>
-//       </TouchableOpacity>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#000',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   title: {
-//     color: 'white',
-//   },
-
-//   btn: {
-//     backgroundColor: 'white',
-//     borderRadius: 10,
-//     height: 50,
-//     width: 150,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     marginTop: 130,
-//   },
-// });
+// <mainTab.Navigator>
+//   <mainTab.Screen name="Posts" component={PostsScreen} />
+//   <mainTab.Screen name="Create" component={CreateScreen} />
+//   <mainTab.Screen name="Profile" component={ProfileScreen} />
+// </mainTab.Navigator>;
