@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //screen
-import LoginScreen from './screens/auth/LoginScreen';
-import RegisterScreen from './screens/auth/RegisterScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import PostsScreen from './screens/mainScreen/PostsScreen';
 import CreateScreen from './screens/mainScreen/CreateScreen';
 import ProfileScreen from './screens/mainScreen/ProfileScreen';
