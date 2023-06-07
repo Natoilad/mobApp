@@ -1,79 +1,61 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
+import { Registration } from './Screen/RegisterScreen';
+import { Login } from './Screen/LoginScreen';
+import { HomePage } from './Screen/MainScreens/Home';
+import { CommentsScreen } from './Screen/MainScreens/CommentsScreen';
+import { MapScreen } from './Screen/MainScreens/MapScreen';
 
-//screen
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import PostsScreen from './screens/MainScreens/PostsScreen';
-import CreateScreen from './screens/MainScreens/CreatePostsScreen';
-import ProfileScreen from './screens/MainScreens/ProfileScreen';
-
-//icons
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { MapScreen } from './screens/MainScreens/MapScreen';
-
-//stack
-const authStack = createNativeStackNavigator();
-const mainTab = createBottomTabNavigator();
+const AuthStack = createStackNavigator();
+const MainStack = createStackNavigator();
 
 export const useRoute = isAuth => {
+  const [fontsLoaded] = useFonts({
+    IcoMoon: require('./assets/iconMoon/icomoon.ttf'),
+  });
   if (!isAuth) {
     return (
-      <authStack.Navigator>
-        <authStack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <authStack.Screen
-          options={{
-            headerShown: false,
-          }}
+      <AuthStack.Navigator initialRouteName="Login">
+        <AuthStack.Screen
           name="Register"
-          component={RegisterScreen}
+          component={Registration}
+          options={{ headerShown: false }}
         />
-      </authStack.Navigator>
+        <AuthStack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+      </AuthStack.Navigator>
     );
   }
+
   return (
-    <mainTab.Navigator
-    // tabBarOptions= {{ showLabel: false }}
-    >
-      <mainTab.Screen
+    <MainStack.Navigator initialRouteName="Home">
+      <MainStack.Screen
         options={{
-          tabBarIcon: ({ focused, size, color }) => {
-            <MaterialCommunityIcons name="post" size={36} color="black" />;
-          },
           headerShown: false,
+          tabBarShowLabel: false,
         }}
-        name="Posts"
-        component={PostsScreen}
+        name="Home"
+        component={HomePage}
       />
-      <mainTab.Screen
+      <MainStack.Screen
         options={{
-          tabBarIcon: ({ focused, size, color }) => {
-            <MaterialIcons name="create" size={24} color="black" />;
-          },
-          headerShown: false,
+          headerTitleAlign: 'center',
+          title: 'Коментарии',
         }}
-        name="Create"
-        component={CreateScreen}
+        name="Comments"
+        component={CommentsScreen}
       />
-      <mainTab.Screen
+      <MainStack.Screen
         options={{
-          tabBarIcon: ({ focused, size, color }) => {
-            <AntDesign name="profile" size={24} color="black" />;
-          },
-          headerShown: false,
+          headerTitleAlign: 'center',
+          title: 'Карта',
         }}
-        name="Profile"
-        component={ProfileScreen}
+        name="Map"
+        component={MapScreen}
       />
-    </mainTab.Navigator>
+    </MainStack.Navigator>
   );
 };
