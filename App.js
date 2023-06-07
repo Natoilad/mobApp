@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-
-import { useRoute } from './router';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { Main } from './components/Main';
 
 export default function App() {
-  const routes = useRoute(true);
-  // const [isAuth, setIsAuth] = useState(false);
-  // useEffect(() => {
-  //   setIsAuth(true);
-  // }, []);
   const [fontsLoaded] = useFonts({
-    Regular: require('./assets/fonts/DMMono-MediumItalic.ttf'),
+    Medium: require('./assets/fonts/Roboto-Medium.ttf'),
+    Bold: require('./assets/fonts/Roboto-Bold.ttf'),
+    Regular: require('./assets/fonts/Roboto-Regular.ttf'),
+    Inter: require('./assets/fonts/Inter-Medium.ttf'),
   });
+
   if (!fontsLoaded) {
     return null;
   }
-  return <NavigationContainer>{routes}</NavigationContainer>;
+
+  return (
+    <Provider store={store}>
+      <Main />
+    </Provider>
+  );
 }
-
-//auth
-// <authStack.Navigator>
-//   <authStack.Screen
-//     options={{
-//       headerShown: false,
-//     }}
-//     name="Login"
-//     component={LoginScreen}
-//   />
-//   <authStack.Screen
-//     options={{
-//       headerShown: false,
-//     }}
-//     name="Register"
-//     component={RegisterScreen}
-//   />
-// </authStack.Navigator>;
-
-// <mainTab.Navigator>
-//   <mainTab.Screen name="Posts" component={PostsScreen} />
-//   <mainTab.Screen name="Create" component={CreateScreen} />
-//   <mainTab.Screen name="Profile" component={ProfileScreen} />
-// </mainTab.Navigator>;
