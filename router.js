@@ -5,15 +5,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //screen
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
-import PostsScreen from './screens/mainScreen/PostsScreen';
-import CreateScreen from './screens/mainScreen/CreateScreen';
-import ProfileScreen from './screens/mainScreen/ProfileScreen';
+import PostsScreen from './screens/MainScreens/PostsScreen';
+import CreateScreen from './screens/MainScreens/CreatePostsScreen';
+import ProfileScreen from './screens/MainScreens/ProfileScreen';
 
 //icons
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { MapScreen } from './screens/mainScreen/MapScreen';
+import { MapScreen } from './screens/MainScreens/MapScreen';
 
 //stack
 const authStack = createNativeStackNavigator();
