@@ -13,7 +13,7 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
-import LognScreen from './LoginScreen';
+// import LognScreen from './LoginScreen';
 
 const image = {
   uri: 'https://instagram.fiev27-1.fna.fbcdn.net/v/t51.2885-15/301784892_1035054610400791_4093792191038428247_n.jpg?stp=dst-jpg_e35_p720x720_sh0.08&_nc_ht=instagram.fiev27-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=yZk3Jrqzpv4AX9rORWq&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjkxNDkyMzcxMDU3NDA5MjI0MA%3D%3D.2-ccb7-5&oh=00_AfBJvI0tFZEDFQI8IjlUj4YGTMF8104dyIsk6MyHu-kYGg&oe=6474F130&_nc_sid=a1ad6c.jpg',

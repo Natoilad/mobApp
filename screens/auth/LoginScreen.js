@@ -13,7 +13,7 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
-import RegisterScreen from './RegisterScreen';
+// import RegisterScreen from './RegisterScreen';
 
 const image = {
   uri: 'https://instagram.fiev27-1.fna.fbcdn.net/v/t39.30808-6/339731547_1412529529546253_1074306498937314805_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08&_nc_ht=instagram.fiev27-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=JSX_eGGfHFoAX8jL8TO&edm=AJ9x6zYAAAAA&ccb=7-5&ig_cache_key=MzEwNDQ1MjU3MDM5ODE2MjYyOQ%3D%3D.2-ccb7-5&oh=00_AfCIClxcoLOBAqB2-Ho8mEmdwArptwspiUle1k3C39hgSg&oe=646C40B1&_nc_sid=5f7460.jpg',
@@ -100,14 +100,14 @@ export default function LoginScreen({ navigation }) {
                   secureTextEntry={true}
                   style={styles.input}
                 />
-                <Button
+                {/* <Button
                   title={'Login'}
                   style={styles.input}
                   onPress={() => {
                     keyHide();
                     onLogin();
                   }}
-                />
+                /> */}
                 <TouchableWithoutFeedback
                   style={{
                     marginTop: 20,
@@ -115,7 +115,28 @@ export default function LoginScreen({ navigation }) {
                 >
                   <Text
                     style={{
+                      marginBottom: 50,
                       fontSize: 30,
+                      color: 'white',
+                      textAlign: 'center',
+                      alignItems: 'center',
+                    }}
+                    onPress={() => {
+                      keyHide();
+                      onLogin();
+                    }}
+                  >
+                    Login
+                  </Text>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                  style={{
+                    marginTop: 50,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 20,
                       color: 'white',
                       textAlign: 'center',
                       alignItems: 'center',
