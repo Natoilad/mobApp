@@ -43,7 +43,7 @@ export const useRoute = isAuth => {
       <MainStack.Screen
         options={{
           headerTitleAlign: 'center',
-          title: 'Коментарии',
+          title: 'Коментарі',
         }}
         name="Comments"
         component={CommentsScreen}
@@ -51,7 +51,7 @@ export const useRoute = isAuth => {
       <MainStack.Screen
         options={{
           headerTitleAlign: 'center',
-          title: 'Карта',
+          title: 'Мапа',
         }}
         name="Map"
         component={MapScreen}

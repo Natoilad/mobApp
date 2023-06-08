@@ -21,12 +21,12 @@ const initialState = {
 
 export const Login = ({ navigation }) => {
   const [auth, setAuth] = useState(initialState);
-  const [showPassford, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(true);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-  const [isFocusedPassword, setIsFocusedPasword] = useState(false);
+  const [isFocusedPassword, setIsFocusedPassword] = useState(false);
   const dispatch = useDispatch();
 
-  const handlClickBtn = () => {
+  const handleClickBtn = () => {
     dispatch(authSignInUser(auth));
     setAuth(initialState);
   };
@@ -49,7 +49,7 @@ export const Login = ({ navigation }) => {
           >
             <View style={styles.form}>
               <View>
-                <Text style={styles.formTitle}>Войти</Text>
+                <Text style={styles.formTitle}>Увійти</Text>
               </View>
 
               <View>
@@ -65,7 +65,7 @@ export const Login = ({ navigation }) => {
                       borderWidth: isFocusedEmail ? 2 : 1,
                     },
                   ]}
-                  placeholder="Адрес электронной почты"
+                  placeholder="Адреса електронної пошти"
                   onFocus={() => setIsFocusedEmail(true)}
                   onBlur={() => setIsFocusedEmail(false)}
                 />
@@ -76,7 +76,7 @@ export const Login = ({ navigation }) => {
                   onChangeText={value =>
                     setAuth(prevLogin => ({ ...prevLogin, password: value }))
                   }
-                  secureTextEntry={showPassford}
+                  secureTextEntry={showPassword}
                   style={[
                     styles.input,
                     {
@@ -85,23 +85,25 @@ export const Login = ({ navigation }) => {
                     },
                   ]}
                   placeholder="Пароль"
-                  onFocus={() => setIsFocusedPasword(true)}
-                  onBlur={() => setIsFocusedPasword(false)}
+                  onFocus={() => setIsFocusedPassword(true)}
+                  onBlur={() => setIsFocusedPassword(false)}
                 />
                 <TouchableOpacity
                   onPress={togleShowPassword}
                   activeOpacity={0.7}
                   style={styles.showPasswordWrap}
                 >
-                  <Text style={styles.showPasswordTitle}>Показать</Text>
+                  <Text style={styles.showPasswordTitle}>
+                    {showPassword ? 'Показати' : 'Приховати'}
+                  </Text>
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
-                onPress={handlClickBtn}
+                onPress={handleClickBtn}
                 activeOpacity={0.7}
                 style={styles.btn}
               >
-                <Text style={styles.btnTitle}>Войти</Text>
+                <Text style={styles.btnTitle}>Увійти</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -109,7 +111,7 @@ export const Login = ({ navigation }) => {
                 onPress={() => navigation.navigate('Register')}
               >
                 <Text style={styles.linkTitle}>
-                  Нет аккаунта? Зарегистрироваться
+                  Немає аккаунту? Зареєструватися
                 </Text>
               </TouchableOpacity>
             </View>

@@ -138,15 +138,15 @@ export function CreatePostsScreen({ navigation }) {
           </View>
         </Camera>
         <TouchableOpacity style={styles.button} onPress={takePhotoCamera}>
-          <Icon name="camer" size={24} color="#BDBDBD" />
+          <Icon name="camera" size={24} color="#BDBDBD" />
         </TouchableOpacity>
       </View>
       <View style={styles.wrapContent}>
         <View style={styles.wrapTitile}>
           {photo !== '' ? (
-            <Text style={styles.titleLoad}>Редактировать фото</Text>
+            <Text style={styles.titleLoad}>Редагувати фото</Text>
           ) : (
-            <Text style={styles.titleLoad}>Загрузить фото</Text>
+            <Text style={styles.titleLoad}>Завантажити фото</Text>
           )}
         </View>
         <View style={styles.form}>
@@ -155,7 +155,7 @@ export function CreatePostsScreen({ navigation }) {
               value={place}
               onChangeText={value => setPlace(value)}
               style={styles.inputName}
-              placeholder="Название..."
+              placeholder="Назва"
             />
           </View>
           <View style={{ marginTop: 32 }}>
@@ -163,7 +163,7 @@ export function CreatePostsScreen({ navigation }) {
               value={photoLocationName}
               onChangeText={value => setPhotoLocationName(value)}
               style={styles.inputLocation}
-              placeholder="Местность..."
+              placeholder="Локація"
             />
           </View>
           <TouchableOpacity style={styles.MapBtn}>
@@ -190,7 +190,7 @@ export function CreatePostsScreen({ navigation }) {
                   : 'rgba(189, 189, 189, 1)',
             }}
           >
-            Опубликовать
+            Опубліковати
           </Text>
         </TouchableOpacity>
 

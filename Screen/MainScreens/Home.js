@@ -27,7 +27,7 @@ export const HomePage = () => {
         options={{
           tabBarShowLabel: false,
           headerTitleAlign: 'center',
-          title: 'Публикации',
+          title: 'Публікації',
           headerRight: () => (
             <TouchableOpacity onPress={signOut} style={styles.logOutBtn}>
               <Icon name="log-out" size={24} color="rgba(33, 33, 33, 0.8)" />

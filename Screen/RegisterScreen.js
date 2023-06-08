@@ -34,9 +34,9 @@ const Icon = createIconSetFromIcoMoon(
 
 export const Registration = ({ navigation }) => {
   const [auth, setAuth] = useState(initialState);
-  const [showPassford, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(true);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-  const [isFocusedPassword, setIsFocusedPasword] = useState(false);
+  const [isFocusedPassword, setIsFocusedPassword] = useState(false);
   const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
@@ -71,7 +71,7 @@ export const Registration = ({ navigation }) => {
     return takePhoto;
   };
 
-  const handlClickBtn = async () => {
+  const handleClickBtn = async () => {
     try {
       const refAvatar = await uploadAvatarToServer(avatar);
 
@@ -81,11 +81,12 @@ export const Registration = ({ navigation }) => {
         email: auth.email,
         password: auth.password,
       };
+      console.log(newAuth);
       dispatch(authSignUpUser(newAuth));
 
       setAuth(initialState);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
@@ -107,7 +108,7 @@ export const Registration = ({ navigation }) => {
             keyboardVerticalOffset={keyboardVerticalOffset}
           >
             <View style={styles.form}>
-              <View style={styles.photoWrapp}>
+              <View style={styles.photoWrap}>
                 {avatar && (
                   <Image
                     source={{ uri: avatar }}
@@ -128,7 +129,7 @@ export const Registration = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
               <View>
-                <Text style={styles.formTitle}>Регистрация</Text>
+                <Text style={styles.formTitle}>Реєстрація</Text>
               </View>
               <View>
                 <TextInput
@@ -145,7 +146,7 @@ export const Registration = ({ navigation }) => {
                   ]}
                   onFocus={() => setIsFocusedLogin(true)}
                   onBlur={() => setIsFocusedLogin(false)}
-                  placeholder="Логин"
+                  placeholder="Логін"
                 />
               </View>
 
@@ -162,7 +163,7 @@ export const Registration = ({ navigation }) => {
                       borderWidth: isFocusedEmail ? 2 : 1,
                     },
                   ]}
-                  placeholder="Адрес электронной почты"
+                  placeholder="Адреса електронної пошти"
                   onFocus={() => setIsFocusedEmail(true)}
                   onBlur={() => setIsFocusedEmail(false)}
                 />
@@ -173,7 +174,7 @@ export const Registration = ({ navigation }) => {
                   onChangeText={value =>
                     setAuth(prevLogin => ({ ...prevLogin, password: value }))
                   }
-                  secureTextEntry={showPassford}
+                  secureTextEntry={showPassword}
                   style={[
                     styles.input,
                     {
@@ -182,29 +183,31 @@ export const Registration = ({ navigation }) => {
                     },
                   ]}
                   placeholder="Пароль"
-                  onFocus={() => setIsFocusedPasword(true)}
-                  onBlur={() => setIsFocusedPasword(false)}
+                  onFocus={() => setIsFocusedPassword(true)}
+                  onBlur={() => setIsFocusedPassword(false)}
                 />
                 <TouchableOpacity
                   onPress={togleShowPassword}
                   activeOpacity={0.7}
                   style={styles.showPasswordWrap}
                 >
-                  <Text style={styles.showPasswordTitle}>Показать</Text>
+                  <Text style={styles.showPasswordTitle}>
+                    {showPassword ? 'Показати' : 'Приховати'}
+                  </Text>
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
-                onPress={handlClickBtn}
+                onPress={handleClickBtn}
                 activeOpacity={0.7}
                 style={styles.btn}
               >
-                <Text style={styles.btnTitle}>Зарегистрироваться</Text>
+                <Text style={styles.btnTitle}>Зареєструватися</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => navigation.navigate('Login')}
               >
-                <Text style={styles.linkTitle}>Уже есть аккаунт? Войти</Text>
+                <Text style={styles.linkTitle}>Вже є аккаунт? Увійти</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
@@ -281,7 +284,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: '#1B4371',
   },
-  photoWrapp: {
+  photoWrap: {
     width: 120,
     height: 120,
     backgroundColor: '#F6F6F6',

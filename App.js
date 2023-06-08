@@ -5,10 +5,10 @@ import { Main } from './components/Main';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Medium: require('./assets/fonts/Roboto-Medium.ttf'),
-    Bold: require('./assets/fonts/Roboto-Bold.ttf'),
-    Regular: require('./assets/fonts/Roboto-Regular.ttf'),
-    Inter: require('./assets/fonts/Inter-Medium.ttf'),
+    Medium: require('./assets/fonts/DMMono-Medium.ttf'),
+    Bold: require('./assets/fonts/DMMono-Light.ttf'),
+    Regular: require('./assets/fonts/DMMono-Regular.ttf'),
+    Inter: require('./assets/fonts/DMMono-MediumItalic.ttf'),
   });
 
   if (!fontsLoaded) {
