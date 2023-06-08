@@ -85,8 +85,9 @@ export function CreatePostsScreen({ navigation }) {
   };
 
   const sendPhoto = async () => {
-    await writeDataToFirestore(photo);
     navigation.navigate('Posts', { photo });
+    console.log('working');
+    await writeDataToFirestore(photo);
     setPhoto('');
     setPlace('');
     setPhotoLocationName('');

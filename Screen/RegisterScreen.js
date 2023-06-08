@@ -38,7 +38,9 @@ export const Registration = ({ navigation }) => {
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
   const [isFocusedLogin, setIsFocusedLogin] = useState(false);
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(
+    'https://firebasestorage.googleapis.com/v0/b/reactnative-453be.appspot.com/o/nalad-logo-clean-q4cmmuxd1cantwa644cxahedmrfn700n881kvimulw.png?alt=media&token=e430afb0-a0d9-4ced-9dfb-1657822e0300&_gl=1*1hxgx6t*_ga*NDgxMzY3NDg0LjE2ODUyOTUzOTY.*_ga_CW55HF8NVT*MTY4NjI2Njk2Ni40LjEuMTY4NjI2Njk4Ny4wLjAuMA..'
+  );
 
   const dispatch = useDispatch();
 
@@ -49,7 +51,6 @@ export const Registration = ({ navigation }) => {
       aspect: [4, 3],
       quality: 1,
     });
-
     if (!result.canceled) {
       setAvatar(result.assets[0].uri);
     }
@@ -74,14 +75,12 @@ export const Registration = ({ navigation }) => {
   const handleClickBtn = async () => {
     try {
       const refAvatar = await uploadAvatarToServer(avatar);
-
       const newAuth = {
         avatar: refAvatar,
         login: auth.login,
         email: auth.email,
         password: auth.password,
       };
-      console.log(newAuth);
       dispatch(authSignUpUser(newAuth));
 
       setAuth(initialState);

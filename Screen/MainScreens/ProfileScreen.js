@@ -71,6 +71,7 @@ export const ProfileScreen = ({ navigation }) => {
           </View>
 
           <TouchableOpacity onPress={signOut} style={styles.btnSignOut}>
+            <Text>Вийти</Text>
             <Icon name="log-out" size={30} color="rgba(33, 33, 33, 0.8)" />
           </TouchableOpacity>
           <View style={styles.nameProfile}>

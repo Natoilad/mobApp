@@ -134,7 +134,7 @@ export const CommentsScreen = ({ route }) => {
           <TextInput
             value={comment}
             onChangeText={setComment}
-            placeholder="Комментировать..."
+            placeholder="Коментувати"
             style={styles.textInput}
           />
           <TouchableOpacity

@@ -5,7 +5,7 @@ import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import { PostsScreen } from './PostsScreen';
 import { CreatePostsScreen } from './CreatePostsScreen';
 import { ProfileScreen } from './ProfileScreen';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 
 const MainTab = createBottomTabNavigator();
 
@@ -35,7 +35,14 @@ export const HomePage = () => {
           ),
           tabBarIcon: () => (
             <View>
-              <Icon name="grid_home" size={24} color="rgba(33, 33, 33, 0.8)" />
+              <View>
+                <Icon
+                  name="grid_home"
+                  size={24}
+                  color="rgba(33, 33, 33, 0.8)"
+                />
+              </View>
+              <Text>Posts</Text>
             </View>
           ),
         }}
@@ -54,11 +61,14 @@ export const HomePage = () => {
           ),
           tabBarStyle: { display: 'none' },
           headerTitleAlign: 'center',
-          title: 'Создать публикацию',
+          title: 'Створити публікацію',
           tabBarShowLabel: false,
           tabBarIcon: () => (
-            <View style={styles.containerTabNav}>
-              <Icon name="plus_empty_icon" size={24} color="#fff" />
+            <View>
+              <View style={styles.containerTabNav}>
+                <Icon name="plus_empty_icon" size={24} color="#fff" />
+              </View>
+              <Text>Create post</Text>
             </View>
           ),
         })}
@@ -71,7 +81,10 @@ export const HomePage = () => {
           tabBarShowLabel: false,
           tabBarIcon: () => (
             <View>
-              <Icon name="user" size={24} color="rgba(33, 33, 33, 0.8)" />
+              <View>
+                <Icon name="user" size={24} color="rgba(33, 33, 33, 0.8)" />
+              </View>
+              <Text>Profile</Text>
             </View>
           ),
         }}
