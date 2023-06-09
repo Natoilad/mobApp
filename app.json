@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobApp",
-    "slug": "mobApp",
+    "slug": "mobapp",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -11,18 +11,28 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "y"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.natoilad.mobapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "811b5588-93d5-4884-bb43-87a36323b9cc"
+      }
+    },
+    "owner": "natoilad"
   }
 }
